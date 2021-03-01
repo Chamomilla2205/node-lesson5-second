@@ -10,11 +10,15 @@ module.exports = {
         ua: 'НЕКОРЕКТНА АДРЕСА'
     },
 
-    INVALID_NAME: 'Name includes only letters',
+    USER_CREATED: {
+        en: 'User is created',
+        ua: 'КОРИСТУВАЧА СТВОРЕНО'
+    },
 
-    USER_CREATED: 'User is created',
-
-    USER_DELETED: 'USER IS DELETED',
+    USER_DELETED: {
+        en: 'USER IS DELETED',
+        ua: 'КОРИСТУВАЧА ВИДАЛЕНО'
+    },
 
     CAR_CREATED: {
         en: 'Car is created',
