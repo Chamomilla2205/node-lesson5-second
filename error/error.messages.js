@@ -5,7 +5,10 @@ module.exports = {
         ua: 'Заповніть таблицю'
     },
 
-    INVALID_ID: 'ID is not valid',
+    INVALID_ID: {
+        en: 'ID IS NOT VALID',
+        ua: 'НЕКОРЕКТНА АДРЕСА'
+    },
 
     INVALID_NAME: 'Name includes only letters',
 
@@ -13,8 +16,14 @@ module.exports = {
 
     USER_DELETED: 'USER IS DELETED',
 
-    CAR_CREATED: 'Car is created',
+    CAR_CREATED: {
+        en: 'Car is created',
+        ua: 'АВТО СТВОРЕНО'
+    },
 
-    CAR_DELETED: 'Car IS DELETED'
+    CAR_DELETED: {
+        en: 'CAR IS DELETED SUCCESSFUL',
+        ua: 'АВТО ВИДАДЕНО!'
+    }
 
 };

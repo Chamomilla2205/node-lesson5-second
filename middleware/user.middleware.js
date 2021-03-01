@@ -5,9 +5,10 @@ module.exports = {
     checkValidId: (req, res, next) => {
         try {
             const { userId } = req.params;
+            const { preferLanguage = 'en' } = req.params;
 
             if (userId.length !== 24) {
-                throw new Error(errorMessages.INVALID_ID);
+                throw new Error(errorMessages.INVALID_ID[preferLanguage]);
             }
 
             next();
@@ -18,9 +19,8 @@ module.exports = {
 
     areUserDataOk: (req, res, next) => {
         try {
-            const {
-                name, preferLanguage = 'en'
-            } = req.body;
+            const { name } = req.body;
+            const { preferLanguage = 'en' } = req.query;
 
             if (!name) {
                 throw new Error(errorMessages.REGISTRATION_TROUBLE[preferLanguage]);

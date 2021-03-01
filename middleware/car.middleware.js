@@ -5,9 +5,10 @@ module.exports = {
     checkValidId: (req, res, next) => {
         try {
             const { userId } = req.params;
+            const { preferLanguage = 'en' } = res.query;
 
             if (userId.length !== 24) {
-                throw new Error(errorMessages.INVALID_ID);
+                throw new Error(errorMessages.INVALID_ID[preferLanguage]);
             }
 
             next();
@@ -18,7 +19,7 @@ module.exports = {
 
     areCarValid: (req, res, next) => {
         try {
-            const { price, model} = req.body;
+            const { price, model } = req.body;
             const { preferLanguage = 'en' } = req.query;
 
             if (!model || Number.isNaN(price)) {

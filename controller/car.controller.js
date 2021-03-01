@@ -6,6 +6,7 @@ module.exports = {
     getAllCars: async (req, res) => {
         try {
             const users = await carService.findAllCars();
+
             res.json(users);
         } catch (err) {
             res.status(errorCodes.BAD_REQUEST).json(err.message);
@@ -24,21 +25,25 @@ module.exports = {
 
     createNewCar: async (req, res) => {
         try {
+            const { preferLanguage = 'en' } = req.query;
+
             await carService.createCar(req.body);
 
-            res.status(errorCodes.CREATED).json(errorMessage.CAR_CREATED);
+            res.status(errorCodes.CREATED).json(errorMessage.CAR_CREATED[preferLanguage]);
         } catch (err) {
-            res.json(err.message);
+            res.status(errorCodes.BAD_REQUEST).json(err.message);
         }
     },
 
     deleteOneCar: async (req, res) => {
         try {
             const { carId } = req.params;
+            const { preferLanguage = 'en' } = req.query;
 
             await carService.deleteCarById(carId);
+            res.json(errorMessage.CAR_DELETED[preferLanguage]);
         } catch (err) {
-            res.json(err.message);
+            res.status(errorCodes.BAD_REQUEST).json(err.message);
         }
     }
 };
