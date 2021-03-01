@@ -21,29 +21,32 @@ module.exports = {
 
             res.json(user);
         } catch (e) {
-            res.status(errorCodes.BAD_REQUEST).json(errorMessage.USER_CREATED);
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     },
 
     addNewUser: async (req, res) => {
         try {
+            const { preferLanguage = 'en' } = req.query;
+
             await service.createUser(req.body);
 
-            res.status(errorCodes.CREATED).json(errorMessage.USER_CREATED);
+            res.status(errorCodes.CREATED).json(errorMessage.USER_CREATED[preferLanguage]);
         } catch (error) {
-            res.json(error.message);
+            res.status(errorCodes.BAD_REQUEST).json(error.message);
         }
     },
 
     deleteUser: async (req, res) => {
         try {
             const { userId } = req.params;
+            const { preferLanguage = 'en' } = req.query;
 
             await service.deleteUserById(userId);
 
-            res.json(errorMessage.USER_DELETED);
+            res.json(errorMessage.USER_DELETED[preferLanguage]);
         } catch (err) {
-            res.json(errorMessage.CAR_DELETED);
+            res.status(errorCodes.BAD_REQUEST).json(err.message);
         }
     }
 };

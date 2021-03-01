@@ -17,7 +17,8 @@ module.exports = {
         try {
             const { carId } = req.params;
 
-            await carService.findCarById(carId);
+            const user = await carService.findCarById(carId);
+            res.json(user);
         } catch (err) {
             res.json(err.message);
         }
